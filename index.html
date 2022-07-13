@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Slider</title>
+</head>
+<body>
+    <div class="card">
+        <div class="mySlider fade">
+            <div class="classtext">1/4</div>
+            <img src="img1.jpg" width="100%">
+        </div>
+        <div class="mySlider fade">
+            <div class="classtext">2/4</div>
+            <img src="img2.jpg" width="100%">
+        </div>
+        <div class="mySlider fade">
+            <div class="classtext">3/4</div>
+            <img src="img3.jpg" width="100%">
+        </div>
+        <div class="mySlider fade">
+            <div class="classtext">4/4</div>
+            <img src="img4.jpg" width="100%">
+        </div>
+        <a class="prev" onclick="plushslide(-1)">&#10094</a>
+        <a class="next" onclick="plushslide(1)">&#10095</a>
+    </div>
+    <div class="circle">
+        <span class="dot" onclick="curentslide(1)"></span>
+        <span class="dot" onclick="curentslide(2)"></span>
+        <span class="dot" onclick="curentslide(3)"></span>
+        <span class="dot" onclick="curentslide(4)"></span>
+    </div>
+    <script>
+        let slideindex = 1;
+        showSlides(slideindex);
+        function plushslide(n){
+            showSlides(slideindex += n);
+        }
+        function curentslide(n){
+            showSlides(slideindex = n);
+        }
+        function showSlides(n){
+            let i;
+            let slides = document.getElementsByClassName("mySlider");
+            let dots = document.getElementsByClassName("dot");
+            if(n > slides.length){
+                slideindex = 1;
+            } //if we click after 4 times it will again start.
+            if(n < 1){
+                slideindex = slides.length;
+            } //if we click back arrow 4 time after that it will again start.
+            for(i=0; i<slides.length; i++){
+                slides[i].style.display = "none";
+            }
+            for(i=0; i<dots.length; i++){
+                dots[i].className = dots[i].className.replace("active","");
+            } //to show the active of the dots.
+            slides[slideindex-1].style.display="block";
+            dots[slideindex-1].className += " active ";
+        }     
+    </script>
+</body>
+</html>
